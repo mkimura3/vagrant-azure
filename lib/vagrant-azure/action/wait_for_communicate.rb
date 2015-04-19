@@ -19,7 +19,7 @@ module VagrantPlugins
 
           if !env[:interrupted]
               # Wait for SSH to be ready.
-              env[:ui].info(I18n.t('vagrant_azure.waiting_for_comm'))
+              @logger.info(I18n.t('vagrant_azure.waiting_for_comm'))
               while true
                 # If we're interrupted then just back out
                 break if env[:interrupted]
@@ -28,7 +28,7 @@ module VagrantPlugins
               end
 
             # Ready and booted!
-            env[:ui].info(I18n.t('vagrant_azure.comm_ready'))
+            @logger.info(I18n.t('vagrant_azure.comm_ready'))
           end
 
           @app.call(env)

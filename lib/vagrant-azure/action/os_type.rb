@@ -17,13 +17,13 @@ module VagrantPlugins
         def call(env)
 
           unless env[:machine].config.vm.guest
-            env[:ui].info 'Determining OS Type By Image'
+            @logger.info 'Determining OS Type By Image'
             guest_os_type = env[:azure_vm_service].send(:get_os_type, env[:machine].provider_config.vm_image)
             env[:machine].config.vm.guest = guest_os_type && guest_os_type.downcase.to_sym
             if env[:machine].config.vm.guest == :windows && env[:machine].config.vm.communicator.nil?
               env[:machine].config.vm.communicator = :winrm
             end
-            env[:ui].info "OS Type is #{guest_os_type}"
+            @logger.info "OS Type is #{guest_os_type}"
           end
 
           @app.call(env)

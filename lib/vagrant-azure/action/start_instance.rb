@@ -24,7 +24,7 @@ module VagrantPlugins
           env[:machine].id =~ /@/
 
           VagrantPlugins::WinAzure::CLOUD_SERVICE_SEMAPHORE.synchronize do
-            env[:ui].info "Attempting to start '#{$`}' in '#{$'}'"
+            @logger.info "Attempting to start '#{$`}' in '#{$'}'"
             env[:azure_vm_service].start_virtual_machine($`, $')
           end
           @app.call(env)

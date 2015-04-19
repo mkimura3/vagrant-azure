@@ -18,13 +18,13 @@ module VagrantPlugins
 
         def call(env)
           if env[:machine].state.id == :StoppedDeallocated
-            env[:ui].info(
+            @logger.info(
               I18n.t('vagrant_azure.already_status', :status => 'stopped.')
             )
           else
             env[:machine].id =~ /@/
             VagrantPlugins::WinAzure::CLOUD_SERVICE_SEMAPHORE.synchronize do
-              env[:ui].info(
+              @logger.info(
                   I18n.t(
                       'vagrant_azure.stopping',
                       :vm_name => $`,

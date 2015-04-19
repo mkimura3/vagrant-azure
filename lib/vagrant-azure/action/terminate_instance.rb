@@ -20,7 +20,7 @@ module VagrantPlugins
 
           if vm.nil?
             # machine not found. assuming it was not created or destroyed
-            env[:ui].info (I18n.t('vagrant_azure.not_created'))
+            @logger.info (I18n.t('vagrant_azure.not_created'))
           else
             env[:azure_vm_service].delete_virtual_machine($`, $')
             env[:machine].id = nil

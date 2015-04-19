@@ -25,7 +25,7 @@ module VagrantPlugins
 
           env[:machine].id =~ /@/
 
-          env[:ui].info "Attempting to read state for #{$`} in #{$'}"
+          @logger.info "Attempting to read state for #{$`} in #{$'}"
 
           vm = env[:azure_vm_service].get_virtual_machine($`, $')
 
@@ -38,7 +38,7 @@ module VagrantPlugins
             return :NotCreated
           end
 
-          env[:ui].info "VM Status: #{vm.status.to_sym}"
+          @logger.info "VM Status: #{vm.status.to_sym}"
           return vm.status.to_sym
         end
       end

@@ -26,7 +26,6 @@ module VagrantPlugins
           else
             timeout = env[:machine].provider_config.state_read_timeout || env[:machine].config.vm.boot_timeout
 
-            env[:ui].info "Waiting for machine to reach state #{@state}"
             @logger.info("Waiting for machine to reach state #{@state}")
 
             begin
@@ -37,7 +36,7 @@ module VagrantPlugins
               end
               env[:ui].success "Machine reached state #{@state}"
             rescue Timeout::Error
-              env[:ui].error "Machine failed to reached state '#{@state}' in '#{timeout}' seconds."
+              @logger.error "Machine failed to reached state '#{@state}' in '#{timeout}' seconds."
               env[:result] = false # couldn't reach state in time
             end
           end

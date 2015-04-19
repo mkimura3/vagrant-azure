@@ -37,7 +37,7 @@ module VagrantPlugins
               hostpath  = File.expand_path(data[:hostpath], env[:root_path])
               guestpath = data[:guestpath]
 
-              env[:ui].info(I18n.t("vagrant_azure.copy_folder",
+              @logger.info(I18n.t("vagrant_azure.copy_folder",
                                   :hostpath => hostpath,
                                   :guestpath => guestpath))
 

@@ -17,7 +17,7 @@ module VagrantPlugins
         def call(env)
           env[:machine].id =~ /@/
 
-          env[:ui].info "Restarting #{$`} in #{$'}"
+          @logger.info "Restarting #{$`} in #{$'}"
           env[:azure_vm_service].restart_virtual_machine($`, $')
 
           @app.call(env)
